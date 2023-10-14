@@ -11,9 +11,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
+import axios from 'axios'
+
 /* add icons to the library */
 library.add(faUserSecret, faTrashCan)
 
-createApp(App)
-    .component('font-awesome-icon', FontAwesomeIcon)
-    .mount('#app')
+const app = createApp(App);
+
+app.config.globalProperties.axios = axios;
+
+app.component('font-awesome-icon', FontAwesomeIcon)
+app.mount('#app')
