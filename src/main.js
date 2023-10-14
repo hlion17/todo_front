@@ -13,12 +13,14 @@ import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
 import axios from 'axios'
 
+import globalMethod from "@/common/globalMethod";
+
 /* add icons to the library */
 library.add(faUserSecret, faTrashCan)
 
 const app = createApp(App);
 
 app.config.globalProperties.axios = axios;
-
+app.use(globalMethod)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount('#app')
