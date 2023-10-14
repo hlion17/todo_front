@@ -98,6 +98,7 @@ export default {
   methods: {
     // 편집속성 변경
     changeEditable() {
+      this.content = this.todo.content;
       this.editable = !this.editable;
     },
 
@@ -152,4 +153,29 @@ export default {
   background-color: #228bec;
   color: white;
 }
+
+input {
+  //font-size: 15px;
+  color: #222222;
+  //width: 300px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  //padding-bottom: 10px;
+  //padding-left: 10px;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+input::placeholder { color: #aaaaaa; }
+input:focus { outline: none; }
+input:focus ~ label, input:valid ~ label {
+  font-size: 16px;
+  bottom: 40px;
+  color: #666;
+  font-weight: bold;
+}
+input:focus ~ span, input:valid ~ span {
+  width: 100%;
+}
+
 </style>
