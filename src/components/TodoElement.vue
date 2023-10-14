@@ -1,32 +1,36 @@
 <template>
   <div>
     <div class="container">
+
       <!-- 체크박스 -->
       <div class="item">
         <input
             type="checkbox"
-            @change="$emit('change-completed')"
+            @change="$emit('change-completed', todo)"
             :checked="isDone"
         />
       </div>
+
       <!-- 투두 내용 -->
       <div
           class="item"
           v-if="!editable"
           :class="{ cancelText: isDone }"
       >
-        {{ this.todo.title }}
+        {{ this.todo.content }}
       </div>
       <input
           v-else
           type="text"
-          v-model="this.todoTitle"
+          v-model="this.content"
           @keyup.enter="sendEditEvent"
       />
+
       <!-- 투두날짜 -->
       <div class="item">
-        {{ this.todo.date }}
+        {{ this.todo.todoEntrTime }}
       </div>
+
       <!-- 수정버튼 -->
       <button
           class="item btn info"
@@ -42,6 +46,7 @@
       >
         Cancel
       </button>
+
       <!-- 삭제아이콘 -->
       <div class="item">
         <font-awesome-icon
@@ -56,34 +61,49 @@
 
 <script>
 export default {
+
+  /**
+   * 투두 entity
+   * todoId
+   * content
+   * todoStus
+   * deadLine
+   * todoEntrTime
+   */
+
   // 상속 데이터
   props: {
     todo: Object
   },
+
   // 컴포넌트 데이터
   data: function () {
     return {
-      editable: false,
-      todoTitle: this.todo.title
+      editable: false,  // 수정여부 플레그 변수
+      content: this.todo.content
     };
   },
+
   // 계산속성
   computed: {
     isDone() {
-      return this.todo.completed;
+      return this.todo.todoStus === 'DONE';
     },
   },
+
   // 메소드
   methods: {
     // 편집속성 변경
     changeEditable() {
       this.editable = !this.editable;
     },
+
     // 변경된 이벤트 전달
     sendEditEvent() {
-      this.$emit('edit-todo', this.todo.id, this.todoTitle);
+      this.$emit('edit-todo', this.todo.todoId, this.content);
       this.editable = !this.editable;
-    }
+    },
+
   }
 
 };
