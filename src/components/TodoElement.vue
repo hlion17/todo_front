@@ -28,7 +28,7 @@
 
       <!-- 투두날짜 -->
       <div class="item">
-        {{ this.todo.todoEntrTime }}
+        {{ toDateFormatType01 }}
       </div>
 
       <!-- 수정버튼 -->
@@ -89,6 +89,9 @@ export default {
     isDone() {
       return this.todo.todoStus === 'DONE';
     },
+    toDateFormatType01() {
+      return this.$getDateTimeType01(this.todo.todoEntrTime)
+    }
   },
 
   // 메소드
