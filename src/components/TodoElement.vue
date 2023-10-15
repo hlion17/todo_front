@@ -1,60 +1,57 @@
 <template>
-  <div>
-    <div class="container">
-
-      <!-- 체크박스 -->
-      <div class="item">
-        <input
-            type="checkbox"
-            @change="$emit('change-completed', todo)"
-            :checked="isDone"
-        />
-      </div>
-
-      <!-- 투두 내용 -->
-      <div
-          class="item"
-          v-if="!editable"
-          :class="{ cancelText: isDone }"
-      >
-        {{ this.todo.content }}
-      </div>
+  <div class="todoItemContainer">
+    <!-- 체크박스 -->
+    <div class="todoInnerItem">
       <input
-          v-else
-          type="text"
-          v-model="this.content"
-          @keyup.enter="sendEditEvent"
+          type="checkbox"
+          @change="$emit('change-completed', todo)"
+          :checked="isDone"
       />
+    </div>
 
-      <!-- 투두날짜 -->
-      <div class="item">
-        {{ toDateFormatType01 }}
-      </div>
+    <!-- 투두 내용 -->
+    <div
+        class="todoInnerItem"
+        v-if="!editable"
+        :class="{ cancelText: isDone }"
+    >
+      {{ this.todo.content }}
+    </div>
+    <input
+        v-else
+        type="text"
+        v-model="this.content"
+        @keyup.enter="sendEditEvent"
+    />
 
-      <!-- 수정버튼 -->
-      <button
-          class="item btn info"
-          v-if="!editable"
-          @click="changeEditable"
-      >
-        Edit
-      </button>
-      <button
-          v-else
-          class="item btn danger"
-          @click="changeEditable"
-      >
-        Cancel
-      </button>
+    <!-- 투두날짜 -->
+    <div class="todoInnerItem">
+      {{ toDateFormatType01 }}
+    </div>
 
-      <!-- 삭제아이콘 -->
-      <div class="item">
-        <font-awesome-icon
-            class="delete_item"
-            @click="$emit('delete-todo')"
-            icon="fa-regular fa-trash-can"
-        />
-      </div>
+    <!-- 수정버튼 -->
+    <button
+        class="todoInnerItem btn info"
+        v-if="!editable"
+        @click="changeEditable"
+    >
+      Edit
+    </button>
+    <button
+        v-else
+        class="todoInnerItem btn danger"
+        @click="changeEditable"
+    >
+      Cancel
+    </button>
+
+    <!-- 삭제아이콘 -->
+    <div class="todoInnerItem">
+      <font-awesome-icon
+          class="deleteIcon"
+          @click="$emit('delete-todo')"
+          icon="fa-regular fa-trash-can"
+      />
     </div>
   </div>
 </template>
@@ -114,68 +111,47 @@ export default {
 </script>
 
 <style>
-.container {
+.todoItemContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.08);
-  width: 60%;
-}
 
-.container:hover {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+
+  box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* 테스트 확인용 속성 */
+  background: antiquewhite;
+}
+.todoItemContainer:hover {
   box-shadow: 1px 4px 20px rgba(0, 0, 0, 0.2);
 }
-
-.item {
+.todoInnerItem {
   padding: 5px;
   margin: 5px;
 }
-
-.delete_item:hover {
+.deleteIcon:hover {
   color: red;
 }
 
+/**
+ * 기타
+ */
 .cancelText {
   text-decoration: line-through;
 }
-
 .btn {
   border: none;
   border-radius: 4px;
 }
-
 .danger {
   background-color: #DC3444;
   color: white;
 }
-
 .info {
   background-color: #228bec;
   color: white;
 }
-
-input {
-  //font-size: 15px;
-  color: #222222;
-  //width: 300px;
-  border: none;
-  border-bottom: solid #aaaaaa 1px;
-  //padding-bottom: 10px;
-  //padding-left: 10px;
-  position: relative;
-  background: none;
-  z-index: 5;
-}
-input::placeholder { color: #aaaaaa; }
-input:focus { outline: none; }
-input:focus ~ label, input:valid ~ label {
-  font-size: 16px;
-  bottom: 40px;
-  color: #666;
-  font-weight: bold;
-}
-input:focus ~ span, input:valid ~ span {
-  width: 100%;
-}
-
 </style>

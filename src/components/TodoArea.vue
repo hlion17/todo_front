@@ -1,19 +1,23 @@
 <template>
-  <div id="appTemplate">
-
-    <!-- 투두 등록 컴포넌트 -->
-    <TodoAdd
-        @add-todo="addTodo"
-    ></TodoAdd>
+  <div id="todoArea">
 
     <!-- 투두 표시 컴포넌트 -->
-    <div v-for="todo in todoList" :key="todo.todoId">
-      <TodoElement
-          :todo="todo"
-          @edit-todo="editTodo"
-          @delete-todo="deleteTodo(todo.todoId)"
-          @change-completed="changeTodoComplete"
-      ></TodoElement>
+    <div id="todoListArea">
+      <div v-for="todo in todoList" :key="todo.todoId">
+        <TodoElement
+            :todo="todo"
+            @edit-todo="editTodo"
+            @delete-todo="deleteTodo(todo.todoId)"
+            @change-completed="changeTodoComplete"
+        ></TodoElement>
+      </div>
+    </div>
+
+    <!-- 투두 등록 컴포넌트 -->
+    <div id="todoRegArea">
+      <TodoAdd
+          @add-todo="addTodo"
+      ></TodoAdd>
     </div>
 
   </div>
@@ -22,7 +26,6 @@
 <script>
 import TodoAdd from './TodoAdd.vue';
 import TodoElement from './TodoElement.vue';
-// import uniqueId from 'lodash.uniqueid';
 
 export default {
   name: 'AppTemplate',
@@ -141,8 +144,29 @@ export default {
 </script>
 
 <style>
-#appTemplate {
+#todoArea {
+  position: relative;
+
+  width: 800px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+
+  /* 테스트 확인용 속성 */
+  background: burlywood;
+}
+#todoListArea {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%);
+}
+#todoRegArea {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
   width: 90%;
-  margin: 100px auto;
+  transform: translate(-50%);
 }
 </style>

@@ -1,12 +1,6 @@
 <template>
-  <div id="addArea">
-    <div class="container">
-      <div>
-        <input type="text" @keypress.enter="createTodo" v-model="content"/>
-        <input type="datetime-local" v-model="date"/>
-      </div>
-    </div>
-  </div>
+  <input id="todoAddInput" type="text" placeholder="작업 추가" @keypress.enter="createTodo" v-model="content"/>
+  <input type="datetime-local" v-model="date"/>
 </template>
 
 <script>
@@ -43,11 +37,16 @@ export default {
 </script>
 
 <style>
-#addArea {
+#todoAddInput {
+  width: 300px;
+  height: 30px;
+
+  padding: 5px;
   margin: 10px;
-}
-.container {
-  display: flex;
-  flex-direction: row;
+
+  border: none;
+  border-radius: 10px;
+
+  background: white;
 }
 </style>
