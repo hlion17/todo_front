@@ -153,7 +153,7 @@ export default {
   border-radius: 20px;
 
   /* 테스트 확인용 속성 */
-  background: burlywood;
+  background: #FFFFFF;
 }
 #todoListArea {
   height: 80%;

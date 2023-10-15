@@ -43,13 +43,14 @@ export default {
   border-radius: 20px;
 
   /* 테스트 확인용 속성 */
-  background: burlywood;
+  background: #FFFFFF;
 }
 .sideMenuItem {
   padding: 10px;
   margin: 10px;
   border-radius: 20px;
-  background: #228bec;
-  color: whitesmoke;
+
+  //background: #228bec;
+  //color: whitesmoke;
 }
 </style>

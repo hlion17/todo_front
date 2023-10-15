@@ -47,6 +47,6 @@ export default {
   border: none;
   border-radius: 10px;
 
-  background: white;
+  background: #F5F5F7;
 }
 </style>

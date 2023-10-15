@@ -35,6 +35,6 @@ export default {
   text-align: center;
   color: #2c3e50;
 
-  background: #aaaaaa;
+  background: #F5F5F7;
 }
 </style>
