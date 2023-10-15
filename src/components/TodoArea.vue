@@ -156,11 +156,15 @@ export default {
   background: burlywood;
 }
 #todoListArea {
+  height: 80%;
+
   position: absolute;
   top: 5%;
   left: 50%;
   width: 80%;
   transform: translate(-50%);
+
+  overflow: auto;
 }
 #todoRegArea {
   position: absolute;
